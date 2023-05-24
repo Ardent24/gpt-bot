@@ -5,8 +5,6 @@ import process from "nodemon";
 import { openai } from "./openai.js";
 import { code } from "telegraf/format";
 
-console.log(config.get("TEST_ENV"));
-
 const bot = new Telegraf(config.get("TELEGRAM_TOKEN"));
 const INITIAL_SESSION = { messages: [] };
 
@@ -43,7 +41,7 @@ bot.on("text", async (ctx) => {
 
     await ctx.reply(response.content);
   } catch (e) {
-    console.log("error", e.message);
+    console.log("Error while processing text message", e.message);
   }
 });
 
@@ -70,7 +68,7 @@ bot.on("voice", async (ctx) => {
 
     await ctx.reply(response.content);
   } catch (e) {
-    console.log("error", e.message);
+    console.log("Error while processing voice message", e.message);
   }
 });
 
